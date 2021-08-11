@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+    <!-- <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js" integrity="sha512-kp7YHLxuJDJcOzStgd6vtpxr4ZU9kjn77e6dBsivSz+pUuAuMlE2UTdKB7jjsWT84qbS8kdCWHPETnP/ctrFsA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        h3, div{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+
+
+<script type="text/babel">
+
+    function App() {
+        var [contador, setCont] = React.useState({
+            cont: 0
+        })
+
+        function contar(){
+            setCont({
+                cont: contador.cont + 1
+            })
+        }
+
+        if (contador.cont === 25){
+            return(
+                <div>
+                    <h3>Parabéns, você clicou 25 vezes, tem mais oq fazer não?</h3>
+                </div>
+            );
+        }
+        return (
+            <div>
+                <div> {contador.cont} </div>
+                <button onClick ={contar}>Contar</button>
+            </div>
+        );
+    }
+
+    ReactDOM.render(<App/>, document.querySelector("#app"));
+</script>   
+</body>
+</html>
