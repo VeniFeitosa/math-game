@@ -74,28 +74,21 @@
         });
         
         function gerarNumero(){
-            var resto = jogo.nmr1%jogo.nmr2
-            // a divisão do numero 1 pelo 2 dá exata?
-            if (resto != 0) {
-                //se não
-                var resto2 = jogo.nmr2%jogo.nmr1
-                //a do numero 2 pelo numero 1 dá exata?
-                if (resto2 !=0) {
-                    //se nao, gera novos numeros
-                    setJogo({
-                        ...jogo,
-                        nmr1 : Math.ceil(Math.random() * 100),
-                        nmr2 : Math.ceil(Math.random() * 100)
-                    });
-                }else{
-                    var n1 = jogo.nmr2
-                    var n2 = jogo.nmr1
-                    setJogo({
+            var n1 = jogo.nmr1
+            var n2 = jogo.nmr2
+            var resto = n1%n2
+
+            if (resto!=0) {
+                while (resto !=0) {
+                    n1 = Math.ceil(Math.random() * 100)
+                    n2 = Math.ceil(Math.random() * 100)
+                    resto = n1%n2
+                }
+                setJogo({
                     ...jogo,
                     nmr1: n1,
                     nmr2: n2
-                    });
-                }
+                });
             }
         }
         gerarNumero()
