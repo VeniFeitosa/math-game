@@ -66,33 +66,13 @@
     function App() {
         
         const [jogo, setJogo] = React.useState({
-        nmr1 : Math.ceil(Math.random() * 100),
-        nmr2 : Math.ceil(Math.random() * 100),
+        nmr1 : Math.ceil(Math.random() * 15),
+        nmr2 : Math.ceil(Math.random() * 10),
         resposta: "",
         pontos: 0,
         incorreto: false,
         });
-        
-        function gerarNumero(){
-            var n1 = jogo.nmr1
-            var n2 = jogo.nmr2
-            var resto = n1%n2
 
-            if (resto!=0) {
-                //implementar logica de gustavo
-                while (resto !=0) {
-                    n1 = Math.ceil(Math.random() * 100)
-                    n2 = Math.ceil(Math.random() * 100)
-                    resto = n1%n2
-                }
-                setJogo({
-                    ...jogo,
-                    nmr1: n1,
-                    nmr2: n2
-                });
-            }
-        }
-        gerarNumero()
 
         function mudarResposta(event){
                 setJogo({
@@ -104,14 +84,15 @@
         function enviar(event){
             if (event.key === "Enter"){
 
-                var div = jogo.nmr1 / jogo.nmr2
+                var div = jogo.nmr2
+
                 if (div === parseInt(jogo.resposta)){
                     //acertou
                     setJogo({
                         ...jogo,
                         resposta: "",
                         pontos: jogo.pontos + 1,
-                        nmr1 : Math.ceil(Math.random() * 10),
+                        nmr1 : Math.ceil(Math.random() * 15),
                         nmr2 : Math.ceil(Math.random() * 10),
                         incorreto:false
                     });
@@ -157,7 +138,7 @@
             return(
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
-                        <h1 className={jogo.incorreto ? "incorreto": ""}> {jogo.nmr1} ÷ {jogo.nmr2}</h1>
+                        <h1 className={jogo.incorreto ? "incorreto": ""}> {jogo.nmr1*jogo.nmr2} ÷ {jogo.nmr1}</h1>
                         <input autoFocus onKeyPress={enviar} onChange={mudarResposta} type="text" value= {jogo.resposta} />
                         <h2>Pontuação: {jogo.pontos}</h2>
                     </div>
@@ -171,9 +152,6 @@
                             </div>
                             <div class="col-md-12 col-sm-12 mb-4">
                                 <a class="btn btn-primary" href="subtracao.html"> Subtração </a>   
-                            </div>
-                            <div class="col-md-12 col-sm-12">
-                                <h3>* O jogo da divisão está instável, reinicie a página se tiver problemas</h3>   
                             </div>
                         </div>
                     </div>    
